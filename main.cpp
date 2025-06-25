@@ -85,4 +85,18 @@ int main(int argc, char* argv[]) {
     std::cout << "ROM Version: $" << std::hex << std::setfill('0') << std::setw(2) << (int)header.rom_version << std::endl;
     std::cout << "Header checksum: " << std::hex << std::setfill('0') << std::setw(2) << (int)header.header_checksum << std::endl;
     std::cout << "Global checksum: " << std::hex << std::setfill('0') << std::setw(2) << header.global_checksum << std::endl;
+
+    uint16_t PC = 0x0100;
+    bool game_running = true;
+    std::cout << "running";
+    while (game_running) {
+        uint8_t opcode = rom_data[PC];
+        std::cout << "Rom Data: " << std::hex << PC << " : " << (int)opcode << std::endl;
+        PC += 1;
+
+        if (PC >= rom_data.size()){
+            game_running = false;
+        }
+    }
+    std::cout << "finished";
 }
